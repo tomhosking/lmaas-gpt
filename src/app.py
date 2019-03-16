@@ -70,7 +70,7 @@ def get_seq_log_prob(model, batch):
     probs = torch.gather(all_probs, 2, tokens_tensor.unsqueeze(-1)).squeeze(-1)
 
     log_probs = torch.log(probs)
-    nll = -1 * torch.sum(log_probs * mask_tensor, -1)
+    nll = -1 * torch.mean(log_probs * mask_tensor, -1)
     return nll.tolist()
 
 
